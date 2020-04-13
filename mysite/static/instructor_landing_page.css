@@ -1,0 +1,45 @@
+
+      body{
+        background: #f4f4f4;
+        font-family: Helvetica Neue,Helvetica,Arial, sans-serif;
+      }
+
+      button{
+        flex-direction: row;
+
+      }
+
+      h1{
+        color: rgb(0,183,255);
+      }
+      h1:after{
+        content:' ';
+        display:block;
+        border:2px solid black;
+      }
+
+      div{
+        color: black;
+        background: red;
+        padding: 50px;
+        margin-left: 50px;
+        margin-right: 800px;
+        margin-bottom: 50px;
+        border: 5px solid grey;
+        display:inline-block;
+      }
+
+      #first{
+        float:left;
+      }
+      #second{
+        float:left;
+      }
+
+      button{
+        border:none;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 12px;
+        margin-top:5px;
+      }
