@@ -21,7 +21,7 @@ class NumericEvaluation(models.Model):
         ]
 
     prompt = models.CharField(max_length=200)
-    response = models.CharField(max_length=1, choices=responseOptions,default=1,)
+    response = models.IntegerField(max_length=1, choices=responseOptions,default=1,)
 
 class OpenEndedEvaluation(models.Model):
     prompt = models.CharField(max_length=200)
