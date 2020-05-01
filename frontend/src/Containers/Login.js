@@ -41,11 +41,9 @@ class Login extends Component{
         wrongCredentials: false,
 
         professorRedirect:false,
-        studentRedirect:false
-
+        studentRedirect:false,
 
     }
-
 
     // *-----------HANDLE SELECT TYPE ------*
 
@@ -103,6 +101,7 @@ class Login extends Component{
                 })
             }
             else{
+
                 // *--------- ADD TOKEN ----------------*
                 // localStorage.setItem('token',login.data.token)
                 localStorage.setItem('userType','Student')
