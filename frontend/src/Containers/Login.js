@@ -43,7 +43,23 @@ class Login extends Component{
         professorRedirect:false,
         studentRedirect:false,
 
-    }
+        students: [],
+
+    };
+
+    async componentDidMount() {
+        try {
+          const res = await fetch('http://127.0.0.1:8000/api/Student');
+          const students = await res.json();
+          console.log('Hello');
+          this.setState({
+            students
+            });
+          console.log(this.state.students);
+        } catch (e) {
+          console.log(e);
+        }
+      }
 
     // *-----------HANDLE SELECT TYPE ------*
 
@@ -93,6 +109,8 @@ class Login extends Component{
     loginHandler= async e=>{
         e.preventDefault()
         e.stopPropagation();
+        console.log('Here is the Data:')
+        console.log(this.state.students);
         if(this.state.typeSelected==='Student'){
             // *----------- CHANGE WITH DJANGO SERVER ---------------*
             if(studentCredentials.username!== this.state.studentEmail.toLowerCase() || studentCredentials.pass!==this.state.studentPassword){
