@@ -5,10 +5,10 @@ urlpatterns = [
     path('Student/', views.ListStudent.as_view()),
     path('Student/<int:pk>/', views.DetailStudent.as_view()),
 
-    path('NumericEval/', views.ListNumericEvaluation.as_view()),
-    path('NumericEval/<int:pk>/', views.DetailNumericEvaluation.as_view()),
+    path('Evaluation/', views.ListEvaluation.as_view()),
+    path('Evaluation/<int:pk>/', views.DetailEvaluation.as_view()),
 
-    path('OpenEval/', views.ListOpenEndedEvaluation.as_view()),
-    path('OpenEval/<int:pk>/', views.DetailOpenEndedEvaluation.as_view()),
+    path('Team/', views.ListTeam.as_view()),
+    path('Team/<int:pk>/', views.DetailTeam.as_view()),
 
 ]

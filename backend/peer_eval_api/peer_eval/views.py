@@ -3,8 +3,8 @@ from rest_framework import generics
 
 # Create your views here.
 
-from .models import Student, NumericEvaluation, OpenEndedEvaluation
-from .serializers import StudentSerializer, NumericEvaluationSerializer, OpenEndedEvaluationSerializer
+from .models import Student, Evaluation, Team
+from .serializers import StudentSerializer, EvaluationSerializer, TeamSerializer
 
 class ListStudent(generics.ListCreateAPIView):
     queryset = Student.objects.all()
@@ -14,18 +14,18 @@ class DetailStudent(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-class ListNumericEvaluation(generics.ListCreateAPIView):
-    queryset = NumericEvaluation.objects.all()
-    serializer_class = NumericEvaluationSerializer
+class ListEvaluation(generics.ListCreateAPIView):
+    queryset = Evaluation.objects.all()
+    serializer_class = EvaluationSerializer
 
-class DetailNumericEvaluation(generics.RetrieveUpdateDestroyAPIView):
-    queryset = NumericEvaluation.objects.all()
-    serializer_class = NumericEvaluationSerializer
+class DetailEvaluation(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Evaluation.objects.all()
+    serializer_class = EvaluationSerializer
 
-class ListOpenEndedEvaluation(generics.ListCreateAPIView):
-    queryset = OpenEndedEvaluation.objects.all()
-    serializer_class = OpenEndedEvaluationSerializer
+class ListTeam(generics.ListCreateAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
 
-class DetailOpenEndedEvaluation(generics.RetrieveUpdateDestroyAPIView):
-    queryset = OpenEndedEvaluation.objects.all()
-    serializer_class = OpenEndedEvaluationSerializer
+class DetailTeam(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer

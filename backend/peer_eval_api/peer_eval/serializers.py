@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student, NumericEvaluation, OpenEndedEvaluation
+from .models import Student, Evaluation, Team
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,26 +7,31 @@ class StudentSerializer(serializers.ModelSerializer):
             'id',
             'firstName',
             'lastName',
-            'userName',
+            'email',
             'password',
         )
         model = Student
 
-class NumericEvaluationSerializer(serializers.ModelSerializer):
+class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
-            'prompt',
-            'response',
-        )
-        model = NumericEvaluation
+            'rating',
+            'comment',
+            'dueDate',
+            'student',
 
-class OpenEndedEvaluationSerializer(serializers.ModelSerializer):
+        )
+        model = Evaluation
+
+class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
-            'prompt',
-            'response',
+            'teamName',
+            'member1',
+            'member2',
+            'member3',
         )
-        model = OpenEndedEvaluation
+        model = Team
 
