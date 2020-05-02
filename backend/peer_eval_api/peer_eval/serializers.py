@@ -16,9 +16,11 @@ class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
+            'evaluation_name',
             'rating',
             'comment',
             'dueDate',
+            'completed',
             'student',
 
         )

@@ -12,9 +12,11 @@ class Student(models.Model):
         return self.email
 
 class Evaluation(models.Model):
+    evaluation_name = models.CharField(max_length=40, default='Test Eval')
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0,)
-    comment = models.CharField(max_length=300)
+    comment = models.CharField(max_length=300, default='', blank=True)
     dueDate = models.DateField()
+    completed = models.BooleanField(default=False)
     student = models.ForeignKey(Student, on_delete=models.CASCADE) #Student that needs to fill out evaluation
 
 class Team(models.Model):

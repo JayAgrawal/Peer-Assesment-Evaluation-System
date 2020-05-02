@@ -39,10 +39,24 @@ class StudentHome extends Component{
         openToDoModal:false,
         todoSelected:null,
         todoResponses:null,
-        logout:false
+        logout:false,
 
+        evaluations:[]
     }
 
+    async componentDidMount() {
+        try {
+          const res = await fetch('http://127.0.0.1:8000/api/Evaluation');
+          const evaluations = await res.json();
+          this.setState({
+            evaluations
+            });
+            
+          console.log(this.state.evaluations);
+        } catch (e) {
+          console.log(e);
+        }
+      }
 
     // *----------HANDLE MODAL METHODS------------------*
      openModalHandler = (e) => {
