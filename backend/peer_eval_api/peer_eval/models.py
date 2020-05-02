@@ -15,7 +15,7 @@ class Evaluation(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0,)
     comment = models.CharField(max_length=300)
     dueDate = models.DateField()
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE) #Student that needs to fill out evaluation
 
 class Team(models.Model):
     teamName = models.ForeignKey(Evaluation, on_delete=models.CASCADE)

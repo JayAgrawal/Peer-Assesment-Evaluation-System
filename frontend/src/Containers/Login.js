@@ -51,7 +51,6 @@ class Login extends Component{
         try {
           const res = await fetch('http://127.0.0.1:8000/api/Student');
           const students = await res.json();
-          console.log('Hello');
           this.setState({
             students
             });
@@ -60,6 +59,7 @@ class Login extends Component{
           console.log(e);
         }
       }
+
 
     // *-----------HANDLE SELECT TYPE ------*
 
@@ -111,21 +111,22 @@ class Login extends Component{
         e.stopPropagation();
         if(this.state.typeSelected==='Student'){
             // *----------- CHANGE WITH DJANGO SERVER ---------------*
-            if(studentCredentials.username!== this.state.studentEmail.toLowerCase() || studentCredentials.pass!==this.state.studentPassword){
-                this.setState({
-                    wrongCredentials:true
-                })
+            console.log(this.state.students[0].email)
+            for (let i = 0; i < 3; i++){
+                if(this.state.students[i].email!== this.state.studentEmail.toLowerCase() || this.state.students[i].password !==this.state.studentPassword){
+                    this.setState({
+                        wrongCredentials:true
+                    })
+                }
+                else{
+                    // *--------- ADD TOKEN ----------------*
+                    // localStorage.setItem('token',login.data.token)
+                    localStorage.setItem('userType','Student')
+                    this.setState({
+                        studentRedirect:true
+                    })
+                }
             }
-            else{
-
-                // *--------- ADD TOKEN ----------------*
-                // localStorage.setItem('token',login.data.token)
-                localStorage.setItem('userType','Student')
-                this.setState({
-                    studentRedirect:true
-                })
-            }
-
         }
 
         if(this.state.typeSelected==='Professor'){
