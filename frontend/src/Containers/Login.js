@@ -112,7 +112,7 @@ class Login extends Component{
         if(this.state.typeSelected==='Student'){
             // *----------- CHANGE WITH DJANGO SERVER ---------------*
             console.log(this.state.students[0].email)
-            for (let i = 0; i < 3; i++){
+            for (let i = 0; i < Object.keys(this.state.students).length; i++){
                 if(this.state.students[i].email!== this.state.studentEmail.toLowerCase() || this.state.students[i].password !==this.state.studentPassword){
                     this.setState({
                         wrongCredentials:true
