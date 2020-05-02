@@ -52,7 +52,19 @@ class StudentHome extends Component{
             evaluations
             });
             
-          console.log(this.state.evaluations);
+            for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
+                var today = new Date();
+                var todayDate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-0'+today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
+
+                if (this.state.evaluations[i].dueDate >= todayDate){
+                    assesmentsToDo.push(this.state.evaluations[i]);
+                }
+                else{
+                    assesmentsClosed.push(this.state.evaluations[i]);
+                }
+            }
+            console.log(assesmentsToDo);
+            console.log(assesmentsClosed);
         } catch (e) {
           console.log(e);
         }
@@ -85,7 +97,6 @@ class StudentHome extends Component{
 
 
     render(){
-
       
         return(
             <Nav

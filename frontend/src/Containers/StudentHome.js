@@ -25,8 +25,6 @@ class StudentHome extends Component{
           this.setState({
             evaluations
             });
-            
-          console.log(this.state.evaluations);
         } catch (e) {
           console.log(e);
         }
