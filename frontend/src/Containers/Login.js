@@ -109,8 +109,6 @@ class Login extends Component{
     loginHandler= async e=>{
         e.preventDefault()
         e.stopPropagation();
-        console.log('Here is the Data:')
-        console.log(this.state.students);
         if(this.state.typeSelected==='Student'){
             // *----------- CHANGE WITH DJANGO SERVER ---------------*
             if(studentCredentials.username!== this.state.studentEmail.toLowerCase() || studentCredentials.pass!==this.state.studentPassword){
