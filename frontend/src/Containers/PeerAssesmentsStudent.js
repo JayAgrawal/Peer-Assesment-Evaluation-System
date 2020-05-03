@@ -73,13 +73,14 @@ class StudentHome extends Component{
                     var todayDate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-0'+today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
 
                     if (this.state.evaluations[i].dueDate >= todayDate){
-                        assesmentsToDo.push(this.state.evaluations[i]);
+                        if(assesmentsToDo.some(temp => temp.id === this.state.evaluations[i].id)){}  
+                        else{assesmentsToDo.push(this.state.evaluations[i]);}
                     }
                     else{
-                        assesmentsClosed.push(this.state.evaluations[i]);
+                        if(assesmentsClosed.some(temp => temp.id === this.state.evaluations[i].id)){} 
+                        else{assesmentsClosed.push(this.state.evaluations[i]);} 
                     }
                 }
-                
             }
         } catch (e) {
           console.log(e);
