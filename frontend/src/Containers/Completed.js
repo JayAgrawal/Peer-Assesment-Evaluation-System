@@ -57,7 +57,6 @@ class StudentHome extends Component{
             this.setState({
                 evaluations
             });
-            console.log(this.state.evaluations);
 
             for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
                 if (this.state.evaluations[i].completed == true){
@@ -65,6 +64,7 @@ class StudentHome extends Component{
                         else{assesmentsCompleted.push(this.state.evaluations[i]);}
                 }
             }
+            assesmentsCompleted.shift();
             
         } catch (e) {
           console.log(e);
