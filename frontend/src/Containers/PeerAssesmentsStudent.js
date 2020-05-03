@@ -41,25 +41,39 @@ class StudentHome extends Component{
         todoResponses:null,
         logout:false,
 
-        evaluations:[]
+        evaluations:[],
+        team:[]
     }
 
     async componentDidMount() {
         try {
-          const res = await fetch('http://127.0.0.1:8000/api/Evaluation');
-          const evaluations = await res.json();
-          this.setState({
-            evaluations
+            const resEval = await fetch('http://127.0.0.1:8000/api/Evaluation');
+            const evaluations = await resEval.json();
+            this.setState({
+                evaluations
             });
-            
+
+            const resTeam = await fetch('http://127.0.0.1:8000/api/Team');
+            const team = await resTeam.json();
+            this.setState({
+              team
+              }); 
+
             for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
-                console.log(this.state.evaluations[i]);
+                for (let j = 0; j < Object.keys(this.state.team).length; j++){
+                    if(this.state.evaluations[i].teamMembers == this.state.team[j].id){
+                        this.state.evaluations[i].teamMembers = [this.state.team[j].member1, this.state.team[j].member2, 
+                        this.state.team[j].member3, this.state.team[j].member4];
+                    } 
+                }
+                
+
                 if (this.state.evaluations[i].completed == false){
                     var today = new Date();
                     var todayDate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-0'+today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
 
                     if (this.state.evaluations[i].dueDate >= todayDate){
-                     assesmentsToDo.push(this.state.evaluations[i]);
+                        assesmentsToDo.push(this.state.evaluations[i]);
                     }
                     else{
                         assesmentsClosed.push(this.state.evaluations[i]);
@@ -67,8 +81,6 @@ class StudentHome extends Component{
                 }
                 
             }
-            console.log(assesmentsToDo);
-            console.log(assesmentsClosed);
         } catch (e) {
           console.log(e);
         }

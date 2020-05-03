@@ -22,6 +22,7 @@ class EvaluationSerializer(serializers.ModelSerializer):
             'dueDate',
             'completed',
             'student',
+            'teamMembers',
 
         )
         model = Evaluation
@@ -30,10 +31,10 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
-            'teamName',
             'member1',
             'member2',
             'member3',
+            'member4',
         )
         model = Team
 

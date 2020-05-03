@@ -11,6 +11,12 @@ class Student(models.Model):
     def __str__(self):
         return self.email
 
+class Team(models.Model):
+    member1 = models.CharField(max_length=30)
+    member2 = models.CharField(max_length=30)
+    member3 = models.CharField(max_length=30)
+    member4 = models.CharField(max_length=30)
+
 class Evaluation(models.Model):
     evaluation_name = models.CharField(max_length=40, default='Test Eval')
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0,)
@@ -18,11 +24,5 @@ class Evaluation(models.Model):
     dueDate = models.DateField()
     completed = models.BooleanField(default=False)
     student = models.ForeignKey(Student, on_delete=models.CASCADE) #Student that needs to fill out evaluation
-
-class Team(models.Model):
-    teamName = models.ForeignKey(Evaluation, on_delete=models.CASCADE)
-    member1 = models.CharField(max_length=30)
-    member2 = models.CharField(max_length=30)
-    member3 = models.CharField(max_length=30)
-
+    teamMembers = models.ForeignKey(Team, on_delete=models.CASCADE)
 

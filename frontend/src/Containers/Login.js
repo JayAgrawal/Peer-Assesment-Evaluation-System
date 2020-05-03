@@ -11,6 +11,7 @@ import SnackBar from '../Components/Login/SnackBar'
 // import router redirect
 
 import {withRouter,Redirect} from 'react-router-dom'
+import StudentHome from '../Components/DashboardStudent/StudentHome'
 
 
 // *----------------DUMMY DATA ------------------*
@@ -54,7 +55,6 @@ class Login extends Component{
           this.setState({
             students
             });
-          console.log(this.state.students);
         } catch (e) {
           console.log(e);
         }
@@ -111,7 +111,6 @@ class Login extends Component{
         e.stopPropagation();
         if(this.state.typeSelected==='Student'){
             // *----------- CHANGE WITH DJANGO SERVER ---------------*
-            console.log(this.state.students[0].email)
             for (let i = 0; i < Object.keys(this.state.students).length; i++){
                 if(this.state.students[i].email!== this.state.studentEmail.toLowerCase() || this.state.students[i].password !==this.state.studentPassword){
                     this.setState({

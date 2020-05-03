@@ -51,8 +51,8 @@ const marks = [
 export default function FormDialog(props) {
     
   let teamMatesForm;
-  if(props.info !==null && props.info.teamMates.length>0){
-    teamMatesForm= props.info.teamMates.map(e=>(
+  if(props.info !==null && props.info.teamMembers.length>0){
+    teamMatesForm= props.info.teamMembers.map(e=>(
 
         <React.Fragment>
 
