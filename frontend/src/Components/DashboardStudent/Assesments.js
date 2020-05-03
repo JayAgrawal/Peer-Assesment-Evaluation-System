@@ -31,7 +31,7 @@ const StudentHome = props=>{
                 <Card>
                     <CardActions onClick={()=>props.openModal(i)}>
                     <CardContent style={{display:'flex', alignItems:'flex-start', flexDirection:'column'}}>
-                        <Typography variant='h5'> <b>{e.name}</b> </Typography>
+                        <Typography variant='h5'> <b>{e.evaluation_name}</b> </Typography>
                         <Typography variant='subtitle1'> <b>Due date:</b> {Moment(e.dueDate).format('MMMM Do YYYY')}</Typography>
                         <Typography variant='subtitle2'> Click here to start </Typography>
                     </CardContent>
@@ -60,7 +60,7 @@ const StudentHome = props=>{
                 <Card>
 
                     <CardContent style={{display:'flex', alignItems:'flex-start', flexDirection:'column'}}>
-                        <Typography variant='h5' style={{color:'#FF5B5C'}}> <b>{e.name}</b> </Typography>
+                        <Typography variant='h5' style={{color:'#FF5B5C'}}> <b>{e.evaluation_name}</b> </Typography>
                         <Typography variant='subtitle1' style={{color:'#FF5B5C'}}> <b>Due date:</b> {Moment(e.dueDate).format('MMMM Do YYYY')}</Typography>
                         <Typography variant='subtitle2' style={{color:'#FF5B5C'}}> Missed </Typography>
                         <Typography variant='subtitle2' style={{color:'#FF5B5C'}}> 0/5 </Typography>
