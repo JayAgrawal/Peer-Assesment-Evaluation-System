@@ -200,7 +200,6 @@ class Login extends Component{
             )
         }
 
-
         return(
             <Container style={{height:'100%'}}>
                 {pageContent}

@@ -32,10 +32,10 @@ const StudentHome = props=>{
                 <Card>
 
                     <CardContent style={{display:'flex', alignItems:'flex-start', flexDirection:'column'}}>
-                        <Typography variant='h5'> <b>{e.name}</b> </Typography>
-                        <Typography variant='subtitle1' > <b>Due date:</b> {Moment(e.dueDate).format('MMMM Do YYYY')}</Typography>
-                        <Typography variant='subtitle2' > <b>Overall: </b> {e.overAll}/5 </Typography>
-                        <Typography variant='subtitle2' > <b>Teacher's note: </b> {e.teachersComment} </Typography>
+                        <Typography variant='h5'> <b>{e.evaluation_name}</b> </Typography>
+                        <Typography variant='subtitle1' > <b>Due date:</b> {Moment(e.dueDate).format('MM/DD/YYYY')}</Typography>
+                        <Typography variant='subtitle2' > <b>Overall: </b> {e.rating}/5 </Typography>
+                        <Typography variant='subtitle2' > <b>Teacher's note: </b> {e.comment} </Typography>
 
                     </CardContent>
                     

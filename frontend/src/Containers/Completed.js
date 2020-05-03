@@ -14,7 +14,7 @@ import {Redirect} from 'react-router-dom'
 
 
 const assesmentsCompleted=[
-    {
+    /*{
         name:'Delivery 1 Assesments',
         dueDate:  Moment(new Date()).subtract(30, 'days').calendar(),
         overAll: 3,
@@ -31,12 +31,12 @@ const assesmentsCompleted=[
         dueDate:  Moment(new Date()).subtract(15, 'days').calendar(),
         overAll: 3,
         teachersComment:'Thoughts on millitary school?'
-    },
+    },*/
     {
-        name:'Delivery 4 Assesments',
-        dueDate:  Moment(new Date()).subtract(5, 'days').calendar(),
-        overAll: 2,
-        teachersComment:'You gucci?'
+        evaluation_name:'Delivery 4 Assesments',
+        dueDate:  Moment(new Date()).subtract(25, 'days').calendar(),
+        rating: 2,
+        comment:'You gucci?'
     }
 ]
 
@@ -47,8 +47,30 @@ const assesmentsCompleted=[
 class StudentHome extends Component{
 
     state={
-
+        evaluations:[],
     }
+
+    async componentDidMount() {
+        try {
+            const res = await fetch('http://127.0.0.1:8000/api/Evaluation');
+            const evaluations = await res.json();
+            this.setState({
+                evaluations
+            });
+            console.log(this.state.evaluations);
+
+            for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
+                if (this.state.evaluations[i].completed == true){
+                    if(assesmentsCompleted.some(temp => temp.id === this.state.evaluations[i].id)){}  
+                        else{assesmentsCompleted.push(this.state.evaluations[i]);}
+                }
+            }
+            
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
 
     onLogout=()=>{
         console.log('here')
