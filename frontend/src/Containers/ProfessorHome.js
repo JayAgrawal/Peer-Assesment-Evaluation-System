@@ -18,7 +18,6 @@ class StudentHome extends Component{
     }
 
     onLogout=()=>{
-        console.log('here')
         this.setState({
             logout:true
         })

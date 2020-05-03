@@ -21,7 +21,7 @@ const StudentHome = props=>{
 
             <Grid item sm={10} xs={10}>
                 <Typography variant="h4">
-                    Welcome {props.name}
+                    Welcome, {props.name}
                 </Typography>
             </Grid>
 
@@ -31,7 +31,7 @@ const StudentHome = props=>{
                     <Card>
                         <CardContent style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                             <Icon component={CheckCircleRoundedIcon} fontSize='large' style={{color:'#39DA8A'}}/>
-                            <Typography variant='h5'> <b>4</b> </Typography>
+                            <Typography variant='h5'> <b>{props.complete}</b> </Typography>
                             <Typography variant='subtitle2'> Completed Assessments </Typography>
                         </CardContent>
                         
@@ -44,7 +44,7 @@ const StudentHome = props=>{
                      <Card>
                         <CardContent style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                             <Icon component={ListRoundedIcon} fontSize='large' style={{backgroundColor:'#6C63FF', color:'#fff', borderRadius:20, fontWeight:'lighter'}}/>
-                            <Typography variant='h5'> <b>6</b> </Typography>
+                            <Typography variant='h5'> <b>{props.total}</b> </Typography>
                             <Typography variant='subtitle2'> Total Assessments </Typography>
                         </CardContent>
                         
@@ -56,7 +56,7 @@ const StudentHome = props=>{
                     <Card>
                         <CardContent style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                             <Icon component={ErrorRoundedIcon} fontSize='large' style={{color:'#FF5B5C'}}/>
-                            <Typography variant='h5'> <b>1</b> </Typography>
+                            <Typography variant='h5'> <b>{props.todo}</b> </Typography>
                             <Typography variant='subtitle2'> Assessments To-Do</Typography>
                         </CardContent>
                         
@@ -67,7 +67,7 @@ const StudentHome = props=>{
                     <Card>
                         <CardContent style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                             <Icon component={ClearRoundedIcon} fontSize='large' style={{color:'#FF5B5C'}}/>
-                            <Typography variant='h5'> <b>1</b> </Typography>
+                            <Typography variant='h5'> <b>{props.missed}</b> </Typography>
                             <Typography variant='subtitle2'> Assessments Missed</Typography>
                         </CardContent>
                         
@@ -78,7 +78,7 @@ const StudentHome = props=>{
                     <Card>
                         <CardContent style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                             <Icon component={VisibilityRoundedIcon} fontSize='large' style={{color:'#6C63FF'}}/>
-                            <Typography variant='h5'> <b>4</b> </Typography>
+                            <Typography variant='h5'> <b>{props.visible}</b> </Typography>
                             <Typography variant='subtitle2'> Assessments Visible</Typography>
                         </CardContent>
                         
@@ -90,7 +90,7 @@ const StudentHome = props=>{
                     <Card>
                         <CardContent style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
                             <Icon component={TimelineRoundedIcon} fontSize='large' style={{color:'#FDAC41'}}/>
-                            <Typography variant='h5'> <b>2.7/5</b> </Typography>
+                            <Typography variant='h5'> <b>{props.overall}/5</b> </Typography>
                             <Typography variant='subtitle2'> Overall</Typography>
                         </CardContent>
                         
