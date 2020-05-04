@@ -20,7 +20,9 @@ class StudentHome extends Component{
 
     state={
         logout:false,
-        evaluations:[]
+
+        evaluations:[],
+        students:[],
     }
 
     async componentDidMount() {
@@ -31,6 +33,7 @@ class StudentHome extends Component{
                 evaluations
             });
 
+
             totalAssesment=0
             toDoAssesment=0
             missAssesment=0
@@ -39,6 +42,7 @@ class StudentHome extends Component{
             completeAssesment=0
 
             for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
+
                 overall += this.state.evaluations[i].rating;
                 if(this.state.evaluations[i].completed == true){
                     completeAssesment++;
@@ -58,7 +62,7 @@ class StudentHome extends Component{
                 visAssesment=toDoAssesment+missAssesment;
                 totalAssesment=i;
             }
-            overall /= totalAssesment;
+            overall = (overall/(completeAssesment+missAssesment)).toFixed(2);
             
         } catch (e) {
           console.log(e);

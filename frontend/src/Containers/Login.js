@@ -8,10 +8,11 @@ import ProfessorLogin from '../Components/Login/ProfessorLogin'
 // Import Custom Components
 import SnackBar from '../Components/Login/SnackBar'
 
+import HomePage from '../Components/DashboardStudent/StudentHome'
+
 // import router redirect
 
 import {withRouter,Redirect} from 'react-router-dom'
-import StudentHome from '../Components/DashboardStudent/StudentHome'
 
 
 // *----------------DUMMY DATA ------------------*
@@ -200,11 +201,11 @@ class Login extends Component{
             )
         }
 
+        
+
         return(
             <Container style={{height:'100%'}}>
                 {pageContent}
-
-
 
                 <SnackBar 
                     message='Wrong Credentials'
