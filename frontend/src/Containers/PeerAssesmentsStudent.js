@@ -105,6 +105,10 @@ class StudentHome extends Component{
             openToDoModal:false
         })
       };
+    
+    submitEval = () => {
+        console.log('You pressed the submit button');
+    }
 
     // LOGOUT
       onLogout=()=>{
@@ -134,6 +138,7 @@ class StudentHome extends Component{
                 close={this.handleClose}
                 open={this.state.openToDoModal}
                 info={this.state.todoSelected}
+                submit={this.submitEval}
             />
 
             {this.state.logout===true?<Redirect to='/login' />:null}
