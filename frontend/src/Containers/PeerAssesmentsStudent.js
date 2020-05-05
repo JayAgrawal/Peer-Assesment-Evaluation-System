@@ -108,7 +108,25 @@ class StudentHome extends Component{
     
     submitEval = () => {
         console.log('You pressed the submit button');
-    }
+        fetch("http://127.0.0.1:8000/api/Evaluation/", {
+            method: "post",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify({
+                evaluation_name : 'Test',
+                rating : 3,
+                comment : 'Test',
+                dueDate : '2020-05-15',
+                completed : true,
+                student : 2,
+                teamMembers : 2,
+            })
+        })
+        }
+
 
     // LOGOUT
       onLogout=()=>{
