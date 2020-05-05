@@ -42,28 +42,29 @@ class StudentHome extends Component{
         logout:false,
 
         evaluations:[],
-        team:[]
+        team:[],
+        teamDup:[]
     }
 
     async componentDidMount() {
         try {
             const resEval = await fetch('http://127.0.0.1:8000/api/Evaluation');
             const evaluations = await resEval.json();
-            this.setState({
-                evaluations
-            });
+            this.setState({evaluations});
 
             const resTeam = await fetch('http://127.0.0.1:8000/api/Team');
             const team = await resTeam.json();
-            this.setState({
-              team
-              }); 
+            this.setState({team}); 
+    
+            const resTeamDup = await fetch('http://127.0.0.1:8000/api/Team');
+            const teamDup = await resTeamDup.json();
+            this.setState({teamDup}); 
 
             for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
                 for (let j = 0; j < Object.keys(this.state.team).length; j++){
                     if(this.state.evaluations[i].teamMembers == this.state.team[j].id){
                         this.state.evaluations[i].teamMembers = [this.state.team[j].member1, this.state.team[j].member2, 
-                        this.state.team[j].member3, this.state.team[j].member4];
+                        this.state.team[j].member3, this.state.team[j].member4, this.state.team[j].id];
                     } 
                 }
                 
@@ -107,8 +108,6 @@ class StudentHome extends Component{
       };
     
     submitEval = () => {
-        console.log('You pressed the submit button');
-        console.log(this.state.todoSelected.rating)
         fetch("http://127.0.0.1:8000/api/Evaluation/", {
             method: "post",
             headers: {
@@ -123,7 +122,7 @@ class StudentHome extends Component{
                 dueDate : this.state.todoSelected.dueDate,
                 completed : true,
                 student : this.state.todoSelected.student,
-                teamMembers : 2,
+                teamMembers : this.state.todoSelected.teamMembers.slice(-1)[0],
             })
         })
         }

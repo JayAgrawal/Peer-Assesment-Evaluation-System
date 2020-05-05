@@ -48,7 +48,7 @@ function valuetext(value) {
 export default function FormDialog(props) {
   let teamMatesForm;
   if (props.info !== null && props.info.teamMembers.length > 0) {
-    teamMatesForm = props.info.teamMembers.map(e => (
+    teamMatesForm = props.info.teamMembers.slice(0, 4).map(e => (
       <React.Fragment>
         <Typography
           id="discrete-slider-custom"
