@@ -82,6 +82,9 @@ class StudentHome extends Component{
                     }
                 }
             }
+
+            assesmentsToDo.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1);
+            assesmentsClosed.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1);
         } catch (e) {
           console.log(e);
         }
