@@ -108,6 +108,7 @@ class StudentHome extends Component{
     
     submitEval = () => {
         console.log('You pressed the submit button');
+        console.log(this.state.todoSelected.rating)
         fetch("http://127.0.0.1:8000/api/Evaluation/", {
             method: "post",
             headers: {
@@ -116,12 +117,12 @@ class StudentHome extends Component{
             },
 
             body: JSON.stringify({
-                evaluation_name : 'Test',
-                rating : 3,
-                comment : 'Test',
-                dueDate : '2020-05-15',
+                evaluation_name : this.state.todoSelected.evaluation_name,
+                rating : 2,
+                comment : 'Testing',
+                dueDate : this.state.todoSelected.dueDate,
                 completed : true,
-                student : 2,
+                student : this.state.todoSelected.student,
                 teamMembers : 2,
             })
         })
