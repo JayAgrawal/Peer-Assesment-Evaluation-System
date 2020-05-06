@@ -39,7 +39,8 @@ class StudentHome extends Component {
     evaluations: [],
     team: [],
     teamDup: [],
-    sliderRating: [0, 0, 0, 0]
+    sliderRating: [],
+    textComment: [],
   };
 
   async componentDidMount() {
@@ -123,29 +124,34 @@ class StudentHome extends Component {
   };
 
   submitEval = () => {
-    console.log(this.state.todoSelected.rating);
-    console.log(this.state.sliderRating);
-    fetch("http://127.0.0.1:8000/api/Evaluation/", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        evaluation_name: this.state.todoSelected.evaluation_name,
-        rating: this.state.todoSelected.rating,
-        comment: "Testing",
-        dueDate: this.state.todoSelected.dueDate,
-        completed: true,
-        student: this.state.todoSelected.student,
-        teamMembers: this.state.todoSelected.teamMembers.slice(-1)[0]
-      })
-    });
+    console.log(this.state.textComment);
+
+    let tempArr = this.state.sliderRating
+    for (let i = 0; i < tempArr.length; i++){
+      fetch("http://127.0.0.1:8000/api/Evaluation/", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          evaluation_name: this.state.todoSelected.evaluation_name,
+          rating: tempArr[i],
+          comment: "Testing",
+          dueDate: this.state.todoSelected.dueDate,
+          completed: true,
+          student: this.state.todoSelected.student,
+          teamMembers: this.state.todoSelected.teamMembers.slice(-1)[0]
+        })
+      });
+    }
+    this.handleClose();
+    this.state.sliderRating = [];
+    tempArr = [];
   };
 
   // LOGOUT
   onLogout = () => {
-    console.log("here");
     this.setState({
       logout: true
     });
@@ -165,6 +171,7 @@ class StudentHome extends Component {
           open={this.state.openToDoModal}
           info={this.state.todoSelected}
           arrayRating={this.state.sliderRating}
+          arrayComment={this.state.textComment}
           submit={this.submitEval}
         />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -41,31 +41,27 @@ const marks = [
   }
 ];
 
-let index = 0;
-let valz = 0;
+
+
 //function valuetext(value) {
 //return `${value}`;
 //}
 
 export default function FormDialog(props) {
   let teamMatesForm;
+  var timeout;
+  const [value, setValue] = React.useState([20,37]);
+
+  const handleChange = (event, newValue) => {
+    timeout && clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      setValue(newValue);
+    }, 1000);
+
+    props.arrayRating.push(newValue);
+  };
 
   if (props.info !== null && props.info.teamMembers.length > 0) {
-    function valuetext(value) {
-      if (value == 0) {
-        console.log("okay");
-        index++;
-        return;
-      }
-
-      console.log("index = ", index);
-      console.log("index % 4 =", index % 4);
-      console.log("value =", value);
-      props.arrayRating[index % 4] = value;
-      index++;
-
-      return `${value}`;
-    }
 
     teamMatesForm = props.info.teamMembers.slice(0, 4).map(e => (
       <React.Fragment>
@@ -78,9 +74,7 @@ export default function FormDialog(props) {
         </Typography>
         <Slider
           defaultValue={0}
-          // getAriaValueText={valuetext}
-          onChange={valuetext(valuetext)}
-          //onSelect={(props.info.rating )}
+          onChange={handleChange}
           valueLabelDisplay="auto"
           step={1}
           marks={marks}
@@ -94,7 +88,6 @@ export default function FormDialog(props) {
           label={`Comment on ${e}`}
           type="text"
           fullWidth
-          onChange={props.onChangeHandler}
         />
       </React.Fragment>
     ));
