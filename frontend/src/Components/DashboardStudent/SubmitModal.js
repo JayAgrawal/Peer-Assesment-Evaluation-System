@@ -41,13 +41,32 @@ const marks = [
   }
 ];
 
-function valuetext(value) {
-  return `${value}`;
-}
+let index = 0;
+let valz = 0;
+//function valuetext(value) {
+//return `${value}`;
+//}
 
 export default function FormDialog(props) {
   let teamMatesForm;
+
   if (props.info !== null && props.info.teamMembers.length > 0) {
+    function valuetext(value) {
+      if (value == 0) {
+        console.log("okay");
+        index++;
+        return;
+      }
+
+      console.log("index = ", index);
+      console.log("index % 4 =", index % 4);
+      console.log("value =", value);
+      props.arrayRating[index % 4] = value;
+      index++;
+
+      return `${value}`;
+    }
+
     teamMatesForm = props.info.teamMembers.slice(0, 4).map(e => (
       <React.Fragment>
         <Typography
@@ -59,7 +78,9 @@ export default function FormDialog(props) {
         </Typography>
         <Slider
           defaultValue={0}
-          getAriaValueText={valuetext}
+          // getAriaValueText={valuetext}
+          onChange={valuetext(valuetext)}
+          //onSelect={(props.info.rating )}
           valueLabelDisplay="auto"
           step={1}
           marks={marks}
