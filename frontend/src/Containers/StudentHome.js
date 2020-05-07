@@ -8,7 +8,7 @@ import HomePage from '../Components/DashboardStudent/StudentHome'
 // Nav
 import Nav from '../Components/NavBar'
 
-let firstName = 'Jay'
+let firstName = ''
 let totalAssesment=0
 let toDoAssesment=0
 let missAssesment=0
@@ -33,6 +33,12 @@ class StudentHome extends Component{
                 evaluations
             });
 
+            let studentLoggedIn = [];
+            if(localStorage && localStorage.getItem("studentLoggedIn")){
+                studentLoggedIn = JSON.parse(localStorage.getItem("studentLoggedIn"));
+            }
+
+            firstName = studentLoggedIn.firstName;
 
             totalAssesment=0
             toDoAssesment=0
@@ -42,26 +48,28 @@ class StudentHome extends Component{
             completeAssesment=0
 
             for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
-
-                overall += this.state.evaluations[i].rating;
-                if(this.state.evaluations[i].completed == true){
-                    completeAssesment++;
-                }
-                else{
-                    var today = new Date();
-                    var todayDate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-0'+today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
-
-                    if (this.state.evaluations[i].dueDate >= todayDate){
-                        console.log(this.state.evaluations[i]);
-                        toDoAssesment++;
+                if(studentLoggedIn.id == this.state.evaluations[i].student){
+                    overall += this.state.evaluations[i].rating;
+                    if(this.state.evaluations[i].completed == true){
+                        completeAssesment++;
                     }
                     else{
-                        missAssesment++;
+                        var today = new Date();
+                        var todayDate = today.getFullYear()+'-0'+(today.getMonth()+1)+'-0'+today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
+
+                        if (this.state.evaluations[i].dueDate >= todayDate){
+                            console.log(this.state.evaluations[i]);
+                            toDoAssesment++;
+                        }
+                        else{
+                            missAssesment++;
+                        }
                     }
+                    visAssesment=toDoAssesment+missAssesment;
                 }
-                visAssesment=toDoAssesment+missAssesment;
-                totalAssesment=i;
+
             }
+            totalAssesment=completeAssesment+toDoAssesment+missAssesment;
             overall = (overall/(completeAssesment+missAssesment)).toFixed(2);
             
         } catch (e) {

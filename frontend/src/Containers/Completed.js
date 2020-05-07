@@ -58,10 +58,17 @@ class StudentHome extends Component{
                 evaluations
             });
 
+            let studentLoggedIn = [];
+            if(localStorage && localStorage.getItem("studentLoggedIn")){
+                studentLoggedIn = JSON.parse(localStorage.getItem("studentLoggedIn"));
+            }
+
             for (let i = 0; i < Object.keys(this.state.evaluations).length; i++){
-                if (this.state.evaluations[i].completed == true){
-                    if(assesmentsCompleted.some(temp => temp.id === this.state.evaluations[i].id)){}  
-                        else{assesmentsCompleted.push(this.state.evaluations[i]);}
+                if(studentLoggedIn.id == this.state.evaluations[i].student){
+                    if (this.state.evaluations[i].completed == true){
+                        if(assesmentsCompleted.some(temp => temp.id === this.state.evaluations[i].id)){}  
+                            else{assesmentsCompleted.push(this.state.evaluations[i]);}
+                    }
                 }
             }
             assesmentsCompleted.shift();

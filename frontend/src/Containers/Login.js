@@ -8,8 +8,6 @@ import ProfessorLogin from '../Components/Login/ProfessorLogin'
 // Import Custom Components
 import SnackBar from '../Components/Login/SnackBar'
 
-import HomePage from '../Components/DashboardStudent/StudentHome'
-
 // import router redirect
 
 import {withRouter,Redirect} from 'react-router-dom'
@@ -122,6 +120,7 @@ class Login extends Component{
                     // *--------- ADD TOKEN ----------------*
                     // localStorage.setItem('token',login.data.token)
                     localStorage.setItem('userType','Student')
+                    localStorage.setItem('studentLoggedIn', JSON.stringify(this.state.students[i]));
                     this.setState({
                         studentRedirect:true
                     })

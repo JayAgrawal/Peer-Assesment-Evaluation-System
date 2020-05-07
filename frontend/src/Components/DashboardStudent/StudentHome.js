@@ -15,7 +15,6 @@ import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 
 
 const StudentHome = props=>{
-console.log(props.name) 
     return(
         <Grid container spacing={6}>
 

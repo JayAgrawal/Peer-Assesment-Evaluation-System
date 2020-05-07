@@ -38,7 +38,6 @@ class StudentHome extends Component {
 
     evaluations: [],
     team: [],
-    teamDup: [],
     sliderRating: [],
     textComment: [],
   };
@@ -53,53 +52,57 @@ class StudentHome extends Component {
       const team = await resTeam.json();
       this.setState({ team });
 
-      const resTeamDup = await fetch("http://127.0.0.1:8000/api/Team");
-      const teamDup = await resTeamDup.json();
-      this.setState({ teamDup });
+      let studentLoggedIn = [];
+            if(localStorage && localStorage.getItem("studentLoggedIn")){
+                studentLoggedIn = JSON.parse(localStorage.getItem("studentLoggedIn"));
+            }
 
       for (let i = 0; i < Object.keys(this.state.evaluations).length; i++) {
-        for (let j = 0; j < Object.keys(this.state.team).length; j++) {
-          if (this.state.evaluations[i].teamMembers == this.state.team[j].id) {
-            this.state.evaluations[i].teamMembers = [
-              this.state.team[j].member1,
-              this.state.team[j].member2,
-              this.state.team[j].member3,
-              this.state.team[j].member4,
-              this.state.team[j].id
-            ];
-          }
-        }
-
-        if (this.state.evaluations[i].completed == false) {
-          var today = new Date();
-          var todayDate =
-            today.getFullYear() +
-            "-0" +
-            (today.getMonth() + 1) +
-            "-0" +
-            today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
-
-          if (this.state.evaluations[i].dueDate >= todayDate) {
-            if (
-              assesmentsToDo.some(
-                temp => temp.id === this.state.evaluations[i].id
-              )
-            ) {
-            } else {
-              assesmentsToDo.push(this.state.evaluations[i]);
+        if(studentLoggedIn.id == this.state.evaluations[i].student){
+          for (let j = 0; j < Object.keys(this.state.team).length; j++) {
+            if (this.state.evaluations[i].teamMembers == this.state.team[j].id) {
+              this.state.evaluations[i].teamMembers = [
+                this.state.team[j].member1,
+                this.state.team[j].member2,
+                this.state.team[j].member3,
+                this.state.team[j].member4,
+                this.state.team[j].id
+              ];
             }
-          } else {
-            if (
-              assesmentsClosed.some(
-                temp => temp.id === this.state.evaluations[i].id
-              )
-            ) {
+          }
+
+          if (this.state.evaluations[i].completed == false) {
+            var today = new Date();
+            var todayDate =
+              today.getFullYear() +
+              "-0" +
+              (today.getMonth() + 1) +
+              "-0" +
+              today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
+
+            if (this.state.evaluations[i].dueDate >= todayDate) {
+              if (
+                assesmentsToDo.some(
+                  temp => temp.id === this.state.evaluations[i].id
+                )
+              ) {
+              } else {
+                assesmentsToDo.push(this.state.evaluations[i]);
+              }
             } else {
-              assesmentsClosed.push(this.state.evaluations[i]);
+              if (
+                assesmentsClosed.some(
+                  temp => temp.id === this.state.evaluations[i].id
+                )
+              ) {
+              } else {
+                assesmentsClosed.push(this.state.evaluations[i]);
+              }
             }
           }
         }
       }
+
 
       assesmentsToDo.sort((a, b) => (a.dueDate > b.dueDate ? 1 : -1));
       assesmentsClosed.sort((a, b) => (a.dueDate > b.dueDate ? 1 : -1));
