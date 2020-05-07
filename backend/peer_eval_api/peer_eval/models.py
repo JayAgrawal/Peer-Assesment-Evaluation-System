@@ -13,7 +13,7 @@ class Student(models.Model):
     lastName = models.CharField(max_length=30)
     email = models.CharField(max_length=30, unique=True) 
     password = models.CharField(max_length=30)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=1)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.email
