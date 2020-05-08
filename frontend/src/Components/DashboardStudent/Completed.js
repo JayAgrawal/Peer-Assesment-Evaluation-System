@@ -30,15 +30,14 @@ const StudentHome = props=>{
         closedArr=props.completedArr.map((e,i)=>(
             <Grid item xs={12} md={6} sm={6} key={e.id}>
                 <Card>
-
+                    <CardActions onClick={()=>props.editModal(i)}>
                     <CardContent style={{display:'flex', alignItems:'flex-start', flexDirection:'column'}}>
                         <Typography variant='h5'> <b>{e.evaluation_name}</b> </Typography>
                         <Typography variant='subtitle1' > <b>Due date:</b> {Moment(e.dueDate).format('MM/DD/YYYY')}</Typography>
                         <Typography variant='subtitle2' > <b>Overall: </b> {e.rating}/5 </Typography>
                         <Typography variant='subtitle2' > <b>Teacher's note: </b> {e.comment} </Typography>
-
                     </CardContent>
-                    
+                    </CardActions>
                 </Card>
             </Grid>
             
@@ -62,6 +61,9 @@ const StudentHome = props=>{
             <Grid item sm={10} xs={10}>
                 <Typography variant="h4" style={{color:'#39DA8A'}}>
                     Completed
+                </Typography>
+                <Typography variant="h6">
+                    Click on Completed Assesment to Redo.
                 </Typography>
             </Grid>
 

@@ -40,9 +40,7 @@ const assesmentsCompleted=[
     }
 ]
 
-
-
-
+let studentLoggedIn = [];
 
 class StudentHome extends Component{
 
@@ -58,7 +56,7 @@ class StudentHome extends Component{
                 evaluations
             });
 
-            let studentLoggedIn = [];
+            
             if(localStorage && localStorage.getItem("studentLoggedIn")){
                 studentLoggedIn = JSON.parse(localStorage.getItem("studentLoggedIn"));
             }
@@ -78,6 +76,30 @@ class StudentHome extends Component{
         }
       }
 
+    editModalHandler = e => {
+        if(assesmentsCompleted[e].student == studentLoggedIn.id){
+            fetch("http://127.0.0.1:8000/api/Evaluation/", {
+            method: "post",
+            headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+            },
+                body: JSON.stringify({
+                evaluation_name: assesmentsCompleted[e].evaluation_name,
+                rating: 0,
+                comment: assesmentsCompleted[e].comment,
+                dueDate: assesmentsCompleted[e].dueDate,
+                completed: false,
+                student: assesmentsCompleted[e].student,
+                teamMembers: assesmentsCompleted[e].teamMembers,
+                })
+            });
+            fetch("http://127.0.0.1:8000/api/Evaluation/" + assesmentsCompleted[e].id, {
+                method: 'DELETE',
+            });
+            console.log('deleted');
+        }
+    };
 
     onLogout=()=>{
         console.log('here')
@@ -96,6 +118,7 @@ class StudentHome extends Component{
             >
                 <Assesments
                 completedArr={assesmentsCompleted}
+                editModal={this.editModalHandler}
                 />
 
             {this.state.logout===true?<Redirect to='/login' />:null}
