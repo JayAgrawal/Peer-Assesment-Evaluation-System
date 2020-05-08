@@ -151,6 +151,10 @@ class StudentHome extends Component {
         })
       });
     }
+    fetch("http://127.0.0.1:8000/api/Evaluation/" + this.state.todoSelected.id, {
+      method: 'DELETE',
+    });
+
     this.handleClose();
     this.state.sliderRating = [];
     tempArr = [];
