@@ -35,6 +35,10 @@ class TeamSerializer(serializers.ModelSerializer):
             'member2',
             'member3',
             'member4',
+            'member1_id',
+            'member2_id',
+            'member3_id',
+            'member4_id',
         )
         model = Team
 

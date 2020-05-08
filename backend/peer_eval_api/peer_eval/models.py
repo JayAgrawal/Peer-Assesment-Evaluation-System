@@ -7,6 +7,10 @@ class Team(models.Model):
     member2 = models.CharField(max_length=30)
     member3 = models.CharField(max_length=30)
     member4 = models.CharField(max_length=30)
+    member1_id = models.CharField(max_length=3)
+    member2_id = models.CharField(max_length=3)
+    member3_id = models.CharField(max_length=3)
+    member4_id = models.CharField(max_length=3)
 
 class Student(models.Model):
     firstName = models.CharField(max_length=30)
@@ -17,7 +21,6 @@ class Student(models.Model):
 
     def __str__(self):
         return self.email
-
 
 class Evaluation(models.Model):
     evaluation_name = models.CharField(max_length=40, default='Test Eval')

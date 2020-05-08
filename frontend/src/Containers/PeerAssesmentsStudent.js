@@ -40,6 +40,7 @@ class StudentHome extends Component {
     team: [],
     sliderRating: [],
     textComment: [],
+    teamMembersID:[]
   };
 
   async componentDidMount() {
@@ -67,6 +68,12 @@ class StudentHome extends Component {
                 this.state.team[j].member3,
                 this.state.team[j].member4,
                 this.state.team[j].id
+              ];
+              this.state.teamMembersID = [
+                this.state.team[j].member1_id,
+                this.state.team[j].member2_id,
+                this.state.team[j].member3_id,
+                this.state.team[j].member4_id,
               ];
             }
           }
@@ -103,7 +110,6 @@ class StudentHome extends Component {
         }
       }
 
-
       assesmentsToDo.sort((a, b) => (a.dueDate > b.dueDate ? 1 : -1));
       assesmentsClosed.sort((a, b) => (a.dueDate > b.dueDate ? 1 : -1));
     } catch (e) {
@@ -113,7 +119,6 @@ class StudentHome extends Component {
 
   // *----------HANDLE MODAL METHODS------------------*
   openModalHandler = e => {
-    console.log(assesmentsToDo[e]);
     this.setState({
       openToDoModal: true,
       todoSelected: assesmentsToDo[e]
@@ -127,8 +132,6 @@ class StudentHome extends Component {
   };
 
   submitEval = () => {
-    console.log(this.state.textComment);
-
     let tempArr = this.state.sliderRating
     for (let i = 0; i < tempArr.length; i++){
       fetch("http://127.0.0.1:8000/api/Evaluation/", {
@@ -143,7 +146,7 @@ class StudentHome extends Component {
           comment: "Testing",
           dueDate: this.state.todoSelected.dueDate,
           completed: true,
-          student: this.state.todoSelected.student,
+          student: this.state.teamMembersID[i],
           teamMembers: this.state.todoSelected.teamMembers.slice(-1)[0]
         })
       });

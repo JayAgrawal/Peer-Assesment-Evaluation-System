@@ -73,8 +73,6 @@ class StudentHome extends Component{
             }
             assesmentsCompleted.shift();
             assesmentsCompleted.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1);
-            console.log(assesmentsCompleted);
-            
         } catch (e) {
           console.log(e);
         }
