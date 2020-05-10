@@ -84,7 +84,7 @@ class StudentHome extends Component {
               today.getFullYear() +
               "-0" +
               (today.getMonth() + 1) +
-              "-0" +
+              "-" +
               today.getDate(); //MUST REMOVE 0's AFTER MAY 10th
 
             if (this.state.evaluations[i].dueDate >= todayDate) {
